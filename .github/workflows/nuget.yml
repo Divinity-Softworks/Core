@@ -1,0 +1,78 @@
+﻿name: "Deploy to NuGet"
+
+on:
+  push:
+    branches:
+      - main
+
+env: 
+  PROJECT_PATH: 'DivinitySoftworks.Core.csproj'
+  
+jobs: 
+  deploy:
+    name: 'Deploy'
+    runs-on: 'ubuntu-latest'
+
+    steps: 
+    - name: 'Checkout'
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: 'Install .NET'
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.*'
+
+    - name: 'Install GitVersion'
+      uses: gittools/actions/gitversion/setup@v1.1.1
+      with:
+        versionSpec: '5.x'
+
+    - name: 'Add GitVersion Config File'
+      run: |
+        echo "Creating GitVersion.yml with GitVersion Configuration File"
+        cat <<EOF > GitVersion.yml
+        mode: Mainline
+        branches:
+          main:
+            regex: ^main$
+            source-branches: []
+            is-mainline: true
+        EOF
+
+    - name: 'Determine Version'
+      uses: gittools/actions/gitversion/execute@v1.1.1
+      with:
+        useConfigFile: true
+        updateAssemblyInfo: true
+
+    - name: 'Add NuGet Package Sources'
+      run: |
+        echo "Creating nuget.config with GitHub Packages Source"
+        cat <<EOF > nuget.config
+        <?xml version="1.0" encoding="utf-8"?>
+        <configuration>
+          <packageSources>
+            <add key="Divinity Softworks - Packages" value="https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" />
+          </packageSources>
+          <packageSourceCredentials>
+            <Divinity_Softworks_-_Packages>
+              <add key="Username" value="${{ github.actor }}" />
+              <add key="ClearTextPassword" value="${{ secrets.GITHUB_TOKEN }}" />
+            </Divinity_Softworks_-_Packages>
+          </packageSourceCredentials>
+        </configuration>
+        EOF
+
+    - name: 'Restore Packages'
+      run: dotnet restore "${{env.PROJECT_PATH}}" --configfile nuget.config
+
+    - name: 'Build Project'
+      run: dotnet build "${{env.PROJECT_PATH}}" --no-restore --configuration Release
+
+    - name: 'Pack Project'
+      run: dotnet pack ${{env.PROJECT_PATH}} -p:PackageVersion=${{ env.nuGetVersionV2 }} --no-restore --no-build --configuration Release --output ./nupkg
+
+    - name: 'Publish Package'
+      run: dotnet nuget push ./nupkg/*.nupkg --source "Divinity Softworks - Packages" --api-key ${{ secrets.GITHUB_TOKEN }}
