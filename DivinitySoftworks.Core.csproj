@@ -12,7 +12,7 @@
 		<PackageDescription>Core Library for Divinity Softworks projects.</PackageDescription>
 		<Version>$(VersionPrefix)</Version>
 		<AssemblyVersion>1.0</AssemblyVersion>
-		<FileVersion>1.0.*</FileVersion>
+		<FileVersion>1.0.0</FileVersion>
 	</PropertyGroup>
 
 </Project>
