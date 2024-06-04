@@ -58,10 +58,10 @@ jobs:
             <add key="Divinity Softworks - Packages" value="https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" />
           </packageSources>
           <packageSourceCredentials>
-            <Divinity_Softworks_-_Packages>
+            <Divinity_x0020_Softworks_x0020_-_x0020_Packages>
               <add key="Username" value="${{ github.actor }}" />
               <add key="ClearTextPassword" value="${{ secrets.GITHUB_TOKEN }}" />
-            </Divinity_Softworks_-_Packages>
+            </Divinity_x0020_Softworks_x0020_-_x0020_Packages>
           </packageSourceCredentials>
         </configuration>
         EOF
