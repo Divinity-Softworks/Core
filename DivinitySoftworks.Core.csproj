@@ -13,6 +13,7 @@
 		<Version>$(VersionPrefix)</Version>
 		<AssemblyVersion>1.0</AssemblyVersion>
 		<FileVersion>1.0.0</FileVersion>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 	</PropertyGroup>
 
 </Project>

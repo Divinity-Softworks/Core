@@ -1,5 +1,8 @@
-﻿using System;
+﻿namespace System;
 
+/// <summary>
+/// Provides extension methods for the <see cref="DateTime"/> type.
+/// </summary>
 public static class DateTimeExtensions {
     /// <summary>
     /// Converts a DateTime to Unix time seconds.
