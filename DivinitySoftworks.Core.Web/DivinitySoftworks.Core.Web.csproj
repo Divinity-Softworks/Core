@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Title>Divinity Softworks - Core Web Library</Title>
+		<Authors>Divinity Softworks</Authors>
+		<RepositoryUrl>https://github.com/Divinity-Softworks/Core.Web</RepositoryUrl>
+		<Description>Core Web Library for Divinity Softworks projects.</Description>
+		<PackageDescription>Core Web Library for Divinity Softworks projects.</PackageDescription>
+		<Version>$(VersionPrefix)</Version>
+		<AssemblyVersion>1.0</AssemblyVersion>
+		<FileVersion>1.0.0</FileVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
+	  <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
+	  <PackageReference Include="Microsoft.Extensions.Options" Version="8.0.2" />
+	  <PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="8.1.2" />
+	</ItemGroup>
+
+</Project>
