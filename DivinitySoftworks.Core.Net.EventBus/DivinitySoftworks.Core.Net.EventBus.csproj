@@ -1,9 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Title>Divinity Softworks - Core Net EventBus Library</Title>
+		<Authors>Divinity Softworks</Authors>
+		<RepositoryUrl>https://github.com/Divinity-Softworks/Core</RepositoryUrl>
+		<Description>Core Net EventBus Library for Divinity Softworks projects.</Description>
+		<PackageDescription>Core Net EventBus Library for Divinity Softworks projects.</PackageDescription>
+		<Version>$(VersionPrefix)</Version>
+		<AssemblyVersion>1.0</AssemblyVersion>
+		<FileVersion>1.0.0</FileVersion>
+	</PropertyGroup>
 
 </Project>

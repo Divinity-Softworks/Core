@@ -7,7 +7,7 @@
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Title>Divinity Softworks - Core Web Http Library</Title>
 		<Authors>Divinity Softworks</Authors>
-		<RepositoryUrl>https://github.com/Divinity-Softworks/Core.Web.Http</RepositoryUrl>
+		<RepositoryUrl>https://github.com/Divinity-Softworks/Core</RepositoryUrl>
 		<Description>Core Http Library for Divinity Softworks projects.</Description>
 		<PackageDescription>Core Http Library for Divinity Softworks projects.</PackageDescription>
 		<Version>$(VersionPrefix)</Version>
