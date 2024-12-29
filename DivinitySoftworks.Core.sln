@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DivinitySoftworks.Core.Web"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DivinitySoftworks.Core.Web.Http", "DivinitySoftworks.Core.Web.Http\DivinitySoftworks.Core.Web.Http.csproj", "{B3B1C327-6648-4C66-8800-29C7F68779A2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DivinitySoftworks.Core.Net.EventBus", "DivinitySoftworks.Core.Net.EventBus\DivinitySoftworks.Core.Net.EventBus.csproj", "{D6A94558-D35F-41A0-AB9C-42BFA97D94BD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{B3B1C327-6648-4C66-8800-29C7F68779A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3B1C327-6648-4C66-8800-29C7F68779A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3B1C327-6648-4C66-8800-29C7F68779A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6A94558-D35F-41A0-AB9C-42BFA97D94BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6A94558-D35F-41A0-AB9C-42BFA97D94BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6A94558-D35F-41A0-AB9C-42BFA97D94BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6A94558-D35F-41A0-AB9C-42BFA97D94BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
