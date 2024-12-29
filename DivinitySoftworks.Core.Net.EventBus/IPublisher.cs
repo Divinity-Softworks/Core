@@ -15,5 +15,5 @@ public interface IPublisher {
     /// <returns>
     /// A task representing the asynchronous operation, containing a result of type <typeparamref name="R"/>.
     /// </returns>
-    Task<R> PublishAsync<T, R>(string busName, T message);
+    Task<R?> PublishAsync<T, R>(string busName, T message);
 }
