@@ -10,7 +10,7 @@ namespace DivinitySoftworks.Core.Net.Mail;
 /// </remarks>
 /// <param name="sender">The sender of the email.</param>
 /// <param name="template">The template to use for the email body.</param>
-public sealed class EmailTamplateMessage(MailAddress sender, string template) {
+public sealed class EmailTemplateMessage(MailAddress sender, string template) {
     /// <summary>
     /// Gets or sets the sender of the email.
     /// </summary>
