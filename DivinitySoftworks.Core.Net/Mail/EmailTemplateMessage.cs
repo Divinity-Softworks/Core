@@ -1,4 +1,5 @@
 ﻿using System.Net.Mail;
+using System.Text.Json.Serialization;
 
 namespace DivinitySoftworks.Core.Net.Mail;
 
@@ -26,21 +27,25 @@ public sealed class EmailTemplateMessage {
     /// <summary>
     /// Gets or sets the sender of the email.
     /// </summary>
+    [JsonConverter(typeof(MailAddressJsonConverter))]
     public MailAddress Sender { get; set; } = default!;
 
     /// <summary>
     /// Gets or sets the list of recipients for the email.
     /// </summary>
+    [JsonConverter(typeof(MailAddressListJsonConverter))]
     public List<MailAddress> To { get; set; } = [];
 
     /// <summary>
     /// Gets or sets the list of CC (carbon copy) recipients for the email.
     /// </summary>
+    [JsonConverter(typeof(MailAddressListJsonConverter))]
     public List<MailAddress> CC { get; set; } = [];
 
     /// <summary>
     /// Gets or sets the list of BCC (blind carbon copy) recipients for the email.
     /// </summary>
+    [JsonConverter(typeof(MailAddressListJsonConverter))]
     public List<MailAddress> BCC { get; set; } = [];
 
     /// <summary>
@@ -76,6 +81,7 @@ public sealed class EmailTemplateMessage {
     /// <summary>
     /// Gets or sets the list of reply-to addresses for the email.
     /// </summary>
+    [JsonConverter(typeof(MailAddressJsonConverter))]
     public List<MailAddress>? ReplyTo { get; set; }
 
     /// <summary>
