@@ -3,18 +3,30 @@
 namespace DivinitySoftworks.Core.Net.Mail;
 
 /// <summary>
-/// Represents an email message with sender, recipients, subject, body, attachments, and additional properties.
+/// Represents an email message that uses a predefined template.
 /// </summary>
-/// <remarks>
-/// Initializes a new instance of the <see cref="EmailMessage"/> class with the specified sender, subject, and text body.
-/// </remarks>
-/// <param name="sender">The sender of the email.</param>
-/// <param name="template">The template to use for the email body.</param>
-public sealed class EmailTemplateMessage(MailAddress sender, string template) {
+public sealed class EmailTemplateMessage {
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="EmailTemplateMessage"/> class.
+    /// </summary>
+    public EmailTemplateMessage() {
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="EmailTemplateMessage"/> class with a sender and template name.
+    /// </summary>
+    /// <param name="sender">The sender of the email.</param>
+    /// <param name="template">The name of the email template.</param>
+    public EmailTemplateMessage(MailAddress sender, string template) {
+        Sender = sender;
+        Template = template;
+    }
+
     /// <summary>
     /// Gets or sets the sender of the email.
     /// </summary>
-    public MailAddress Sender { get; set; } = sender;
+    public MailAddress Sender { get; set; } = default!;
 
     /// <summary>
     /// Gets or sets the list of recipients for the email.
@@ -37,12 +49,12 @@ public sealed class EmailTemplateMessage(MailAddress sender, string template) {
     public string? Subject { get; set; }
 
     /// <summary>
-    /// Gets or sets the email template.
+    /// Gets or sets the name of the email template.
     /// </summary>
-    public string Template { get; set; } = template;
+    public string Template { get; set; } = default!;
 
     /// <summary>
-    /// Gets or sets the parameters for the template.
+    /// Gets or sets the parameters to replace placeholders in the template.
     /// </summary>
     public Dictionary<string, string> Parameters { get; set; } = [];
 

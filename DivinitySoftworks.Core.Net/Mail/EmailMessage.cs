@@ -3,18 +3,30 @@
 namespace DivinitySoftworks.Core.Net.Mail;
 
 /// <summary>
-/// Represents an email message with sender, recipients, subject, body, attachments, and additional properties.
+/// Represents an email message with customizable properties such as recipients, body, and attachments.
 /// </summary>
-/// <remarks>
-/// Initializes a new instance of the <see cref="EmailMessage"/> class with the specified sender, subject, and text body.
-/// </remarks>
-/// <param name="sender">The sender of the email.</param>
-/// <param name="subject">The subject of the email.</param>
-public sealed class EmailMessage(MailAddress sender, string subject) {
+public sealed class EmailMessage {
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="EmailMessage"/> class.
+    /// </summary>
+    public EmailMessage() {
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="EmailMessage"/> class with a sender and subject.
+    /// </summary>
+    /// <param name="sender">The sender of the email.</param>
+    /// <param name="subject">The subject of the email.</param>
+    public EmailMessage(MailAddress sender, string subject) {
+        Sender = sender;
+        Subject = subject;
+    }
+
     /// <summary>
     /// Gets or sets the sender of the email.
     /// </summary>
-    public MailAddress Sender { get; set; } = sender;
+    public MailAddress Sender { get; set; } = default!;
 
     /// <summary>
     /// Gets or sets the list of recipients for the email.
@@ -34,7 +46,7 @@ public sealed class EmailMessage(MailAddress sender, string subject) {
     /// <summary>
     /// Gets or sets the subject of the email.
     /// </summary>
-    public string Subject { get; set; } = subject;
+    public string? Subject { get; set; }
 
     /// <summary>
     /// Gets or sets the HTML body of the email.
