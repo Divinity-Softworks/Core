@@ -31,8 +31,10 @@ public sealed class MailAddressJsonConverter : JsonConverter<MailAddress> {
     /// <param name="value">The <see cref="MailAddress"/> object to serialize.</param>
     /// <param name="options">The options used during the serialization process.</param>
     public override void Write(Utf8JsonWriter writer, MailAddress value, JsonSerializerOptions options) {
-        if(value is not null)
-            writer.WriteStringValue(value.ToString());
-        writer.WriteNullValue();
+        if(value is null) {
+            writer.WriteNullValue();
+            return;
+        }
+        writer.WriteStringValue(value.ToString());
     }
 }
