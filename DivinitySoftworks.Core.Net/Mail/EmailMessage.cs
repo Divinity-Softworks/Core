@@ -81,8 +81,8 @@ public sealed class EmailMessage {
     /// <summary>
     /// Gets or sets the list of reply-to addresses for the email.
     /// </summary>
-    [JsonConverter(typeof(MailAddressJsonConverter))]
-    public List<MailAddress>? ReplyTo { get; set; }
+    [JsonConverter(typeof(MailAddressListJsonConverter))]
+    public List<MailAddress> ReplyTo { get; set; } = [];
 
     /// <summary>
     /// Gets or sets additional headers for advanced email configuration.
