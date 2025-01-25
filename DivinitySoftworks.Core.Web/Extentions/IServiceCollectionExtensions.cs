@@ -13,7 +13,7 @@ public static class IServiceCollectionExtensions {
     /// <param name="services">The service collection to which the services will be added.</param>
     /// <returns>The updated service collection.</returns>
     public static IServiceCollection AddOpenIdConnect(this IServiceCollection services) {
-        services.AddSingleton<IAuthorizeService, AuthorizeService>();
+        services.AddScoped<IAuthorizeService, AuthorizeService>();
 
         return services;
     }

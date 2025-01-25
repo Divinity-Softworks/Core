@@ -3,6 +3,8 @@ using Microsoft.IdentityModel.Protocols;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Security.Principal;
 
 namespace DivinitySoftworks.Core.Web.Security;
 
@@ -17,6 +19,15 @@ public interface IAuthorizeService {
     /// <param name="cancellationToken">Optional cancellation token.</param>
     /// <returns>An AuthorizeResult indicating the authorization status.</returns>
     Task<AuthorizeResult> Authorize(string token, CancellationToken? cancellationToken = null);
+    /// <summary>
+    /// Gets the user ID from the validated JWT token's claims.
+    /// </summary>
+    /// <remarks>
+    /// The user ID is extracted from the "sub" claim, which is the standard claim for the subject identifier 
+    /// in OpenID Connect, or the <see cref="ClaimTypes.NameIdentifier"/> claim if "sub" is not present.
+    /// Returns <c>null</c> if the token has not been validated or if the user ID claim is missing.
+    /// </remarks>
+    string? UserId { get; }
 }
 
 /// <summary>
@@ -27,6 +38,7 @@ public class AuthorizeService : IAuthorizeService {
     readonly AuthorizationOptions _authorizationOptions;
 
     OpenIdConnectConfiguration? openIdConnectConfiguration;
+    ClaimsPrincipal? claimsPrincipal;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="AuthorizeService"/> class.
@@ -38,6 +50,15 @@ public class AuthorizeService : IAuthorizeService {
             _authorizationOptions.OidcMetadataUrl,
             new OpenIdConnectConfigurationRetriever(),
             new HttpDocumentRetriever());
+    }
+
+
+    /// <inheritdoc/>
+    public string? UserId {
+        get {
+            return (claimsPrincipal?.FindFirst("sub") 
+                ?? claimsPrincipal?.FindFirst(ClaimTypes.NameIdentifier))?.Value;
+        }
     }
 
 
@@ -71,12 +92,14 @@ public class AuthorizeService : IAuthorizeService {
         };
 
         try {
-            new JwtSecurityTokenHandler()
+            claimsPrincipal = new JwtSecurityTokenHandler()
                 .ValidateToken(token["Bearer ".Length..], validationParameters, out SecurityToken validatedToken);
-
+            
             return AuthorizeResult.IsAuthorized(validatedToken);
         }
         catch (Exception exception) {
+            claimsPrincipal = null;
+
             return AuthorizeResult.Unauthorized(exception);
         }
     }
